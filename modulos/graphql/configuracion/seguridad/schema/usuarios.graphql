@@ -1,0 +1,91 @@
+type usuario{
+    usua_id:String
+    usua_enti_id:String
+    usua_cambiar:Int
+    usua_login:String
+    usua_activo:Int
+    usua_creacion:DateTime
+    usua_timezone:String
+    usua_tipo_id:String
+    tipo_enti_id:String
+    tipo_nombre:String
+    tipo_activo:Int
+    uspe_id:String
+    uspe_usua_id:String
+    uspe_pers_id:String
+    uspe_desde:DateTime
+    uspe_hasta:DateTime
+    pers_enti_id:String
+    pers_rut:String
+    pers_nombres:String
+    pers_apellidos:String
+    pers_email:[String]
+    pers_telefono:[String]
+    pers_direccion:String
+    pers_activo:Int
+    pers_creacion:DateTime
+    empl_id:String
+    empl_puem_id:String
+    empl_pers_id:String
+    empl_desde:DateTime
+    empl_hasta:DateTime
+    puem_id:String
+    puem_empr_id:String
+    puem_pues_id:String
+    puem_activo:Int
+    puem_creacion:DateTime
+    pues_id:String
+    pues_enti_id:String
+    pues_nombre:String
+    pues_activo:Int
+    pues_creacion:DateTime
+    empr_id:String
+    empr_enti_id:String
+    empr_nombre:String
+    empr_activo:Int
+    empr_creacion:DateTime
+    empr_rut:String
+    empr_direccion:String
+    empr_email:[String]
+    empr_telefonos:[String]
+    empr_web:String
+    modulos(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultModulosUsuarios
+    #propiedades(filter:filter,orderBy:[orderBy]):propiedadesUsuario
+}
+
+type propiedadUsuario{
+    enti_id:String
+    valor:String
+}
+
+type propiedadesUsuario {
+    totalCount:Int
+    data:[propiedadUsuario]
+}
+
+type usuarios {
+    totalCount:Int
+    data:[usuario]
+}
+
+type tokens {
+    accessToken:String
+    refreshToken:String
+}
+
+union resultUsuarios = usuarios | msg
+
+type Query {
+    usuarios(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultUsuarios
+    usuarioByAccessToken(accessToken:String!):resultUsuarios
+} 
+
+type Mutation {
+    login(usua_login:String!,usua_passwd:String!):tokens
+    loginTemp(temp_id:String!):tokens
+    requestResetPassword(usua_email:String!):Int
+    resetPassword(rese_id:String!):Int
+    requestGenTempPassword(usua_email:String!):String
+    activeTempPassword(temp_id:String!):Int
+    checkTempPassword(temp_id:String!):Int
+} 

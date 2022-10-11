@@ -1,0 +1,32 @@
+union NumericoOrBooleanOrSmallint = Numerico | Booleano | Entero
+
+type histNumerico {
+    valo_id:String
+    valo_punt_id:String
+    valo_fecha_lectura:DateTime
+    valo_error:Int
+    valo_fecha_recibida:DateTime
+    valo_unixtime:BigInt
+    valo_valor_original:Float
+    valo_fecha_almacenamiento:DateTime
+    valo_peso_pulso:Float
+    valo_offset:Float
+    valo_valor_po:Float
+    kcorriente:Float
+    kvoltaje:Float
+    k:Float
+    valo_valor: Float
+    timezone:String
+}
+
+
+type histNumericos {
+    totalCount:Int
+    data:[histNumerico]
+}
+
+union resultHistNumericos = histNumericos | msg
+
+type Query {
+    histnumerico(punt_id:String!,unid_id:String,fecha_inicial:String!,fecha_final:String!,intervalo:Int,filter:filter,orderBy:[orderBy],paginacion:paginacion):resultHistNumericos
+} 

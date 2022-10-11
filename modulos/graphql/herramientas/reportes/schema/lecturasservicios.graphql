@@ -1,0 +1,62 @@
+type lecturaServicio{
+    cont_id:String
+    cont_enti_id:String
+    cont_numero_texto:String
+    cont_numero:Int
+    cont_activo:Int
+    equi_nombre:String
+    equi_numero:Int
+    frpr_fran_id:String
+    fran_nombre:String
+    frpr_prop_id:String
+    prop_nombre:String
+    espa_id:String
+    espa_area_id:String
+    espa_area_nombre:String
+    espa_piso_id:String
+    espa_piso_nombre:String
+    taed_tari_id:String
+    tari_nombre:String
+    taed_id:String
+    taed_nombre:String
+    coco_codigo:String
+    inst_id:String
+    valo_id:String 
+    valo_punt_id:String 
+    valo_fecha_lectura_utc:DateTime 
+    valo_fecha_lectura:DateTime 
+    valo_error:Int 
+    valo_valor_lectura:Float 
+    valo_valor_convertido:Float 
+    valo_peso_pulso:Float 
+    valo_offset:Float 
+    valo_valor_po:Float 
+    valo_k_corriente:Float 
+    valo_k_voltaje:Float 
+    valo_k:Float 
+    valo_valor_final:Float 
+    valo_fecha_recibida_utc:DateTime 
+    valo_fecha_recibida:DateTime 
+    valo_unixtime:BigInt
+    cotz_compensacion:Float
+    valo_alert_codigo:Int
+    valo_alert_comentario:String
+    serv_id:String
+    serv_nombre:String
+    vari_id:String
+    vari_nombre:String
+    vari_defecto_unid_id:String
+    vari_unid_nombre:String
+    vari_unid_medida:String
+}
+
+type lecturasServicio {
+    totalCount:Int
+    data:[lecturaServicio]
+}
+
+union resultLecturasServicio  = lecturasServicio  | msg
+
+type Query {
+    lecturasServicio(edif_id:String!,serv_id:[String],usua_id:String!,fecha:String!,filter:filter,orderBy:[orderBy],paginacion:paginacion):resultLecturasServicio
+} 

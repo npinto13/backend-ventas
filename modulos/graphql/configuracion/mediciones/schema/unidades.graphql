@@ -1,0 +1,43 @@
+type unidad {
+    unid_id:String
+    unid_enti_id:String
+    unid_medida:String
+    unid_descripcion:String
+    unid_nombre:String
+    unid_activo:Int
+    unid_creacion:DateTime
+    unid_magn_id:String
+    magn_enti_id:String
+    magn_nombre:String
+    magn_descripcion:String
+    unid_factor_multi_comun:Float
+}
+
+type unidades {
+    totalCount:Int
+    data:[unidad]
+}
+
+union resultUnidades = unidades | msg
+
+type Query {
+    unidades(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultUnidades
+} 
+type Mutation{
+    insertUnidad(fields:fieldUnidad):unidad
+    updateUnidad(filter:filter,fields:fieldUnidad):resultUnidades
+    deleteUnidad(filter:filter):resultUnidades
+}
+
+input fieldUnidad{
+    serv_nombre:String
+    serv_activo:Int
+    serv_identificador:String
+    serv_descripcion:String
+}
+
+
+
+
+
+

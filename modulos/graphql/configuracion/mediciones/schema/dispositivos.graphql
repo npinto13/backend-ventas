@@ -1,0 +1,33 @@
+type dispositivo {
+disp_id:String
+disp_equi_id:String
+equi_id:String
+equi_enti_id:String
+equi_edif_id:String
+equi_nombre:String
+equi_numero:Int
+equi_activo:Int
+equi_creacion:DateTime
+edif_nombre:String
+edif_prefijo:String
+}
+
+type dispositivos {
+    totalCount:Int
+    data:[dispositivo]
+}
+
+union resultDispositivos = dispositivos | msg
+
+type Query {
+    dispositivos(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultDispositivos
+} 
+
+
+
+
+
+
+
+
+

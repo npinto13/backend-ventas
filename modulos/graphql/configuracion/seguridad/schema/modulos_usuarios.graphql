@@ -1,0 +1,23 @@
+type modulo_usuario {
+    pemo_modu_id:String
+    modu_enti_id:String
+    modu_nombre:String
+    modu_activo:Int
+    modu_descripcion:String
+    modu_padre_id:String
+    modu_posicion:Int
+    modu_icono:String
+    modu_ruta:String
+    pemo_privilegios:[Int]
+}
+
+type modulos_usuarios {
+    totalCount:Int
+    data:[modulo_usuario]
+}
+
+union resultModulosUsuarios = modulos_usuarios | msg
+
+type Query {
+    modulos_usuarios(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultModulosUsuarios
+} 

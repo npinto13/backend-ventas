@@ -1,0 +1,43 @@
+type servicio {
+    serv_id:String
+    serv_enti_id:String
+    serv_nombre:String
+    serv_activo:Int
+    serv_creacion:DateTime
+    serv_vari_id:String
+    serv_identificador:String
+    serv_descripcion:String
+    vari_nombre:String
+    vari_magn_id:String
+    magn_nombre:String
+    magn_unid_id:[String]
+}
+
+type servicios {
+    totalCount:Int
+    data:[servicio]
+}
+
+union resultServicios = servicios | msg
+
+type Query {
+    servicios(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultServicios
+} 
+type Mutation{
+    insertServicio(fields:fieldServicio):servicio
+    updateServicio(filter:filter,fields:fieldServicio):resultServicios
+    deleteServicio(filter:filter):resultServicios
+}
+
+input fieldServicio{
+    serv_nombre:String
+    serv_activo:Int
+    serv_identificador:String
+    serv_descripcion:String
+}
+
+
+
+
+
+

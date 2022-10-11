@@ -1,0 +1,59 @@
+type instrumento {
+inst_id:String
+inst_equi_id:String
+inst_serv_id:[String]
+inst_tipo:String
+equi_id:String
+equi_enti_id:String
+equi_edif_id:String
+equi_nombre:String
+equi_numero:Int
+equi_activo:Int
+equi_creacion:DateTime
+edif_nombre:String
+edif_prefijo:String
+edif_enti_id:String
+timezone:String
+espa_id:String
+espa_inst_id:String
+espa_piso_id:String
+espa_area_id:String
+espa_desde:DateTime
+espa_hasta:DateTime
+espa_caracteristicas:JSONObject
+espa_piso_enti_id:String
+espa_piso_nombre:String
+espa_area_enti_id:String
+espa_area_nombre:String
+ubic_id:String
+ubic_inst_id:String
+ubic_piso_id:String
+ubic_area_id:String
+ubic_desde:DateTime
+ubic_hasta:DateTime
+ubic_caracteristicas:JSONObject
+ubic_piso_enti_id:String
+ubic_piso_nombre:String
+ubic_area_enti_id:String
+ubic_area_nombre:String
+}
+
+type instrumentos {
+    totalCount:Int
+    data:[instrumento]
+}
+
+union resultInstrumentos = instrumentos | msg
+
+type Query {
+    instrumentos(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultInstrumentos
+} 
+
+
+
+
+
+
+
+
+

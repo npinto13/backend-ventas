@@ -1,0 +1,75 @@
+type lecturaVariableAll{
+    punt_id:String
+    punt_inst_id:String
+    inst_edif_enti_id:String
+    inst_equi_enti_id:String
+    inst_equi_edif_id:String
+    inst_edif_timezone:String
+    inst_equi_nombre:String
+    inst_equi_numero:Int
+    espa_area_nombre:String
+    espa_piso_nombre:String
+    punt_vari_id:String
+    vari_nombre:String
+    vari_unid_nombre:String
+    vari_unid_medida:String
+    inst_id:String
+    cont_edif_id:String
+    cont_id:String
+    cont_numero:Int
+    cont_numero_texto:String
+    fran_nombre:String
+    prop_nombre:String
+    tari_nombre:String
+    taed_nombre:String
+    valo_id:String
+    valo_punt_id:String
+    valo_fecha_lectura:DateTime
+    valo_error:Int 
+    valo_fecha_recibida:DateTime
+    valo_unixtime:BigInt 
+    valo_valor_original:Float
+    valo_peso_pulso:Float
+    valo_offset:Float
+    valo_valor_po:Float
+    valo_k_corriente:Float
+    valo_k_voltaje:Float
+    valo_k:Float
+    valo_valor_convertido:Float
+    valo_total:BigInt
+}
+
+type lecturaVariableAgrup{
+    inst_equi_nombre:String
+    cont_numero_texto:String
+    fran_nombre:String
+    prop_nombre:String
+    espa_area_nombre:String
+    espa_piso_nombre:String
+    tari_nombre:String
+    taed_nombre:String
+    vari_nombre:String
+    vari_unid_nombre:String
+    vari_unid_medida:String
+    valo_cantidad:BigInt
+    valo_minimo:Float
+    valo_maximo:Float
+    valo_promedio:Float
+    valo_total:BigInt
+}
+
+type lecturasVariableAll {
+    totalCount:Int
+    data:[lecturaVariableAll]
+}
+
+type lecturasVariableAgrup {
+    totalCount:Int
+    data:[lecturaVariableAgrup]
+}
+
+union resultLecturasVariable  = lecturasVariableAll | lecturasVariableAgrup | msg
+
+type Query {
+    lecturasVariable(edif_id:String!,inst_id:[String],vari_id:[String],fecha_desde:String,fecha_hasta:String,hora_desde:String,hora_hasta:String,filter:String,orderBy:[orderBy],paginacion:paginacion,agrupado:Boolean):resultLecturasVariable 
+} 

@@ -1,0 +1,32 @@
+#union NumericoOrBooleanOrSmallint = Numerico | Booleano | Entero
+
+type histNumericoDia {
+    valo_id:String
+    valo_punt_id:String
+    valo_fecha_lectura:Time
+    valo_error:Int
+    valo_fecha_recibida:DateTime
+    valo_unixtime:BigInt
+    valo_valor_original:Float
+    valo_fecha_almacenamiento:DateTime
+    valo_peso_pulso:Float
+    valo_offset:Float
+    valo_valor_po:Float
+    kcorriente:Float
+    kvoltaje:Float
+    k:Float
+    valo_valor: Float
+    timezone:String
+}
+
+
+type histNumericosDia {
+    totalCount:Int
+    data:[histNumericoDia]
+}
+
+union resultHistNumericosDia = histNumericosDia | msg
+
+type Query {
+    histnumericoDia(punt_id:String!,unid_id:String,fecha:String!,intervalo:Int,filter:filter,orderBy:[orderBy],paginacion:paginacion):resultHistNumericosDia
+} 

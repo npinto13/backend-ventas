@@ -1,0 +1,34 @@
+type pais {
+    pais_id:String
+    pais_enti_id:String
+    pais_nombre:String
+    pais_activo:Int
+    pais_creacion:DateTime
+}
+
+type paises {
+    totalCount:Int
+    data:[pais]
+}
+
+union resultPaises = paises | msg
+
+type Query {
+    paises(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultPaises
+} 
+type Mutation{
+    insertPais(fields:fieldPais):pais
+    updatePais(filter:filter,fields:fieldPais):resultPaises
+    deletePais(filter:filter):resultPaises
+}
+
+input fieldPais{
+    pais_nombre:String
+    pais_activo:Int
+}
+
+
+
+
+
+

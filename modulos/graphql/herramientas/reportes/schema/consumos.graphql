@@ -1,0 +1,117 @@
+type consumo {
+	cont_id:String
+	cont_enti_id:String
+	cont_numero_texto:String
+	cont_numero:Int
+	cont_activo:Int
+	equi_nombre:String
+	equi_numero:Int
+	frpr_fran_id:String
+	fran_nombre:String
+	frpr_prop_id:String
+	prop_nombre:String
+	espa_id:String
+	espa_area_id:String
+	espa_area_nombre:String
+	espa_piso_id:String
+	espa_piso_nombre:String
+	taed_tari_id:String
+	tari_nombre:String
+	taed_id:String
+	taed_nombre:String
+	coco_codigo:String
+	inst_id:String
+	inic_valo_id:String
+	inic_valo_punt_id:String
+	inic_valo_fecha_lectura_utc:DateTime
+	inic_valo_fecha_lectura:DateTime
+	inic_valo_error:Int
+	inic_valo_valor_lectura:Float
+	inic_valo_valor_convertido:Float
+	inic_valo_peso_pulso:Float 
+	inic_valo_offset:Float
+	inic_valo_valor_po:Float
+	inic_valo_k_corriente:Float
+	inic_valo_k_voltaje:Float
+	inic_valo_k:Float
+	inic_valo_valor_final:Float
+	inic_valo_fecha_recibida_utc:DateTime
+	inic_valo_fecha_recibida:DateTime
+	inic_valo_unixtime:BigInt
+	inic_cotz_compensacion:Float
+	inic_valo_alert_codigo:Int
+	inic_valo_alert_comentario:String
+	inic_serv_id:String
+	inic_serv_nombre:String
+	inic_vari_id:String
+	inic_vari_nombre:String
+	inic_vari_defecto_unid_id:String
+	inic_vari_unid_nombre:String
+	inic_vari_unid_medida:String
+	fina_valo_id:String
+	fina_valo_punt_id:String
+	fina_valo_fecha_lectura_utc:DateTime
+	fina_valo_fecha_lectura:DateTime
+	fina_valo_error:Int
+	fina_valo_valor_lectura:Float
+	fina_valo_valor_convertido:Float
+	fina_valo_peso_pulso:Float
+	fina_valo_offset:Float
+	fina_valo_valor_po:Float
+	fina_valo_k_corriente:Float
+	fina_valo_k_voltaje:Float
+	fina_valo_k:Float
+	fina_valo_valor_final:Float
+	fina_valo_fecha_recibida_utc:DateTime
+	fina_valo_fecha_recibida:DateTime
+	fina_valo_unixtime:BigInt 
+	fina_cotz_compensacion:Float
+	fina_valo_alert_codigo:Int
+	fina_valo_alert_comentario:String
+	fina_serv_id:String
+	fina_serv_nombre:String
+	fina_vari_id:String
+	fina_vari_nombre:String
+	fina_vari_defecto_unid_id:String
+	fina_vari_unid_nombre:String
+	fina_vari_unid_medida:String
+	valo_porcentaje:Float
+	valo_consumo:Float
+	valo_consumo_porcentaje:Float
+}
+
+
+type consumos {
+    totalCount:Int
+    data:[consumo]
+}
+
+type payload {
+    pagination:pagination
+}
+
+type pagination {
+    page:Int
+    first_page_url:String
+    from:Int
+    last_page:Int
+    links:[link],
+    next_page_url:String 
+    items_per_page:Int
+    prev_page_url:String
+    to:Int
+    total:Int
+}
+
+type link {
+    url:String
+    label:String
+    active:Int
+    page:Int
+}
+
+union resultConsumos = consumos | msg
+
+type Query {
+    consumos(edif_id:String!,serv_id:[String],usua_id:String!,fecha_inicial:String!,fecha_final:String!,filter:filter,orderBy:[orderBy],paginacion:paginacion):resultConsumos
+} 

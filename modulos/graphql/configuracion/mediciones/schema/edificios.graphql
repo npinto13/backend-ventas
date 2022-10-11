@@ -1,0 +1,53 @@
+type edificio {
+    edif_id:String
+    edif_enti_id:String
+    edif_prefijo:String
+    edif_direccion:String
+    edif_ciud_id:String
+    edif_prin_inst_id:String
+    prin_equi_id:String
+    prin_equi_enti_id:String
+    prin_equi_nombre:String
+    edif_gasc_inst_id:String
+    gasc_equi_id:String
+    gasc_equi_enti_id:String
+    gasc_equi_nombre:String
+    edif_clie_inst_id:String
+    clie_equi_id:String
+    clie_equi_enti_id:String
+    clie_equi_nombre:String
+    edif_nombre:String
+    edif_activo:Int
+    edif_creacion:DateTime
+    ciud_nombre:String
+    regi_nombre:String
+    zona_nombre:String
+    pais_nombre:String
+}
+
+type edificios {
+    totalCount:Int
+    data:[edificio]
+}
+
+union resultEdificios = edificios | msg
+
+type Query {
+    edificios(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultEdificios
+} 
+type Mutation{
+    insertEdificio(fields:fieldEdificio):edificio
+    updateEdificio(filter:filter,fields:fieldEdificio):resultEdificios
+    deleteEdificio(filter:filter):resultEdificios
+}
+
+input fieldEdificio{
+    edif_nombre:String
+    edif_activo:Int
+}
+
+
+
+
+
+

@@ -1,0 +1,121 @@
+scalar Date
+scalar Time
+scalar DateTime
+scalar UtcOffset
+scalar EmailAddress
+scalar NegativeFloat
+scalar NegativeInt
+scalar NonNegativeFloat
+scalar NonNegativeInt
+scalar NonPositiveFloat
+scalar NonPositiveInt
+scalar PhoneNumber
+scalar PositiveFloat
+scalar PositiveInt
+scalar PostalCode
+scalar UnsignedFloat
+scalar UnsignedInt
+scalar URL
+scalar ObjectID
+scalar BigInt
+scalar Long
+scalar SafeInt
+scalar GUID
+scalar HexColorCode
+scalar HSL
+scalar HSLA
+scalar IPv4
+scalar IPv6
+scalar ISBN
+scalar MAC
+scalar Port
+scalar RGB
+scalar RGBA
+scalar USCurrency
+scalar Currency
+scalar JSON
+scalar JSONObject
+scalar Byte
+
+input fieldPisoEdificioDisponible{
+    pied_piso_id:String
+    pied_edif_id:String
+    pied_activo:Int
+}
+
+type msg {
+    tipo:Int!
+    mensaje:String!
+}
+
+input orderBy{
+    field:String
+    type:String
+}
+
+input where {
+    field:String
+    value:[String]
+}
+
+input paginacion {
+    pagina:Int
+    cantidad: Int
+}
+
+#PRUEBA DE FILTRO#
+
+input filter {
+    conjuncion:conjuncion
+    miembros:[miembro]
+    condiciones:[condicion]
+}
+
+input miembro{
+    conjuncion:conjuncion
+    condiciones:[condicion]
+    miembros:[miembro]
+}
+
+input condicion {
+    field:String!
+    operador:operador
+    value:[String]
+}
+
+enum operador {
+    ANYUUID
+    ANY
+    EQUAL
+    XEQUAL
+    NOT_EQUAL
+    SMALLER_THAN
+    SMALLER_THAN_OR_EQUAL
+    GREATER_THAN
+    GREATER_THAN_OR_EQUAL
+    IN
+    NOT_IN
+    LIKE
+    NOT_LIKE
+    BETWEEN
+    NOT_BETWEEN
+    IS_NULL
+    IS_NOT_NULL
+}
+
+enum conjuncion{
+    AND
+    OR
+}
+
+type Numerico {
+    n_value:Float
+}
+
+type Booleano {
+    b_value:Int
+}
+
+type Entero {
+    e_value:Int
+}

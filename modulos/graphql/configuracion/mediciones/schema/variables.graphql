@@ -1,0 +1,38 @@
+type variable {
+    vari_id:String
+    vari_enti_id:String
+    vari_descripcion:String
+    vari_zero:Int
+    vari_virtual:Int
+    vari_k_voltaje:Int
+    vari_k_corriente:Int
+    vari_magn_id:String
+    vari_codigo:[String]
+    vari_serv_id:[String]
+    vari_defecto_unid_id:String
+    unid_enti_id:String
+    unid_nombre:String
+    unid_medida:String
+    unid_descripcion:String
+    unid_factor_multi_comun:Float
+    vari_nombre:String
+    vari_activo:Int
+    vari_creacion:DateTime
+    magn_id:String
+    magn_enti_id:String
+    magn_descripcion:String
+    magn_nombre:String
+    magn_activo:Int
+    magn_creacion:DateTime
+}
+
+type variables {
+    totalCount:Int
+    data:[variable]
+}
+
+union resultVariables = variables | msg
+
+type Query {
+    variables(filter:filter,orderBy:[orderBy],paginacion:paginacion):resultVariables
+} 
